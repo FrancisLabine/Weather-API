@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-api
+  labels:
+    app: weather-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: weather-api
+  template:
+    metadata:
+      labels:
+        app: weather-api
+    spec:
+      containers:
+      - name: weather-api
+        image: ${IMAGE}
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /current
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10

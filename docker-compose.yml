@@ -1,0 +1,12 @@
+services:
+  api:
+    build: ./go-api
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      - API_URL=${API_URL}
+
+  # python-processor:
+  #   build: ./python-processor
+  #   ports:
+  #     - "8000:8000"
